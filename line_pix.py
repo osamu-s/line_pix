@@ -9,7 +9,9 @@ def generate_line(col, num):
         return [[0] * col]
     if num == col:
         return [[1] * col]
-    if col == 0: return []   # not to be used
+    if col == 0:
+        return []   # not to be used
+
     return ([[0] + l for l in generate_line(col -1, num)] +
             [[1] + l for l in generate_line(col -1, num -1)] )
 
