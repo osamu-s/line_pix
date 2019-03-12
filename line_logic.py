@@ -5,20 +5,14 @@
 import itertools
 
 def generate_line(size, nums):
-    if len(nums) == 0:
-        return [0]*size
 
-    c_num = nums[0]
-    lest_num = nums[1:]
+    req_size = sum(num) + (len(nums) -1)
+    box_lst = range(len(nums) +1)
+    float_spc = size - req_size
 
-    spcs = len(lest_num)
-    lest_size = sum(lest_num) + spcs
+    spc_dist = itertools.combinations_with_replacement(box_lst, float_spc)
 
-    room = size - lest_size
-    if room < c_num:
-        print('error', size, room, lest_size, nums)
-        return             ###
-    return [ [0] *i + [1] * c_num
+    return [ [0] *i + [1] * c_num +[0]
              + generate_line(size - c_num -1 -i, lest_num)
             for i in range(room - c_num + 1) ]
 
